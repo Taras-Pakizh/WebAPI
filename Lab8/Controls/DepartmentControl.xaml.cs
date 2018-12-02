@@ -43,8 +43,60 @@ namespace Lab8.Controls
         {
             if (MyGrig.SelectedIndex == -1)
                 return;
-            var _department = (DepartmentView)MyGrig.SelectedItem;
+            var _department = MyGrig.SelectedItem as DepartmentView;
+            if (_department == null)
+                return;
             Employees = _department.Employees;
+        }
+
+        private void Add_Click(object sender, RoutedEventArgs e)
+        {
+            if (AddPanel.Visibility == Visibility.Hidden)
+                AddPanel.Visibility = Visibility.Visible;
+            else AddPanel.Visibility = Visibility.Hidden;
+        }
+
+        private void CommitAdd_Click(object sender, RoutedEventArgs e)
+        {
+            DepartmentView view = new DepartmentView();
+            view.dname = dNameAdd.Text;
+            var parameter = new ModifyParameter();
+            parameter.view = view;
+            parameter.Add = true;
+            ((ApplicationView)DataContext).UseEntity.Execute(parameter);
+            AddPanel.Visibility = Visibility.Hidden;
+        }
+
+        private void CommitModify_Click(object sender, RoutedEventArgs e)
+        {
+            DepartmentView view = new DepartmentView();
+            view.dname = dNameModify.Text;
+            view.departmentID = Int32.Parse(departmentID.Text);
+            var parameter = new ModifyParameter();
+            parameter.view = view;
+            parameter.Update = true;
+            ((ApplicationView)DataContext).UseEntity.Execute(parameter);
+            ModifyPanel.Visibility = Visibility.Hidden;
+        }
+
+        private void Modify_Click(object sender, RoutedEventArgs e)
+        {
+            var _department = MyGrig.SelectedItem as DepartmentView;
+            if (_department == null)
+                return;
+            dNameModify.Text = _department.dname;
+            departmentID.Text = _department.departmentID.ToString();
+            ModifyPanel.Visibility = Visibility.Visible;
+        }
+
+        private void Delete_Click(object sender, RoutedEventArgs e)
+        {
+            if (MyGrig.SelectedIndex == -1)
+                return;
+            var _department = MyGrig.SelectedItem as DepartmentView;
+            if (_department == null)
+                return;
+            ((ApplicationView)DataContext).UseEntity.Execute(_department);
         }
     }
 }

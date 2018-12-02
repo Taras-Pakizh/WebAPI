@@ -9,22 +9,40 @@ using System.Collections.ObjectModel;
 
 using Lab8.Mapping;
 using AutoMapper;
+using System.Windows.Input;
+
+using System.Data.Linq.Mapping;
+using System.Data.Linq;
+using System.Configuration;
 
 namespace Lab8.ViewModel
 {
     public class ApplicationView:ViewBase
     {
         private MyModel _model;
+        private DataContext _linqContext;
+
         public ApplicationView()
         {
             _model = new MyModel();
-            
+
+            string connection = ConfigurationManager.ConnectionStrings["MyModel"].ToString();
+
+            _linqContext = new DataContext(connection);
+            Table<Department> dep = _linqContext.GetTable<Department>();
+
+            var ado = new ADOTask<Department>(connection);
+            var departments = ado.All();
+
 
             var config = Mapping.Mapping.CreateMapper_Position_to_View();
             _positions = config.Map<IEnumerable<Position>, ObservableCollection<PositionView>>(_model.Positions);
 
             config = Mapping.Mapping.CreateMapper_Employee_to_View();
             _employees = config.Map<IEnumerable<Employee>, ObservableCollection<EmployeeView>>(_model.Employees);
+
+            //config = Mapping.Mapping.CreateMapper_Department_to_View();
+            //_departments = config.Map<IEnumerable<Department>, ObservableCollection<DepartmentView>>(dep);
 
             config = Mapping.Mapping.CreateMapper_Department_to_View();
             _departments = config.Map<IEnumerable<Department>, ObservableCollection<DepartmentView>>(_model.Departments);
@@ -91,6 +109,32 @@ namespace Lab8.ViewModel
                 OnPropertyChanged(nameof(EmployeeOrders));
             }
         }
+        #endregion
+
+        #region Commands
+
+        private Command _entity;
+        public ICommand UseEntity
+        {
+            get
+            {
+                if (_entity != null)
+                    return _entity;
+                _entity = new Command(_UseEntityTask);
+                return _entity;
+            }
+        }
+
+        #endregion
+
+        #region CommandExecution
+
+        private void _UseEntityTask(object obj)
+        {
+            EntityTask task = new EntityTask(_model, this);
+            task.Execute(obj);
+        }
+
         #endregion
     }
 }

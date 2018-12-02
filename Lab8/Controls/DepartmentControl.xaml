@@ -7,7 +7,8 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" Name="MyControl">
     <StackPanel>
-        <DataGrid Name="MyGrig" ItemsSource="{Binding Departments, Mode=TwoWay}" AutoGenerateColumns="False" SelectedCellsChanged="DataGrid_SelectedCellsChanged">
+        <DataGrid Name="MyGrig" ItemsSource="{Binding Departments, Mode=TwoWay}" 
+                  AutoGenerateColumns="False" SelectedCellsChanged="DataGrid_SelectedCellsChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="#" Binding="{Binding Path=departmentID}" Width="30" IsReadOnly="True"/>
 
@@ -23,13 +24,38 @@
                     </DataGridTemplateColumn.CellTemplate>
                     <DataGridTemplateColumn.CellEditingTemplate>
                         <DataTemplate>
-                            <TextBox Text="{Binding dname}" />
+                            <TextBox Text="{Binding dname, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellEditingTemplate>
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-
+        
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Button Grid.Column="0" Grid.Row="0" Content="Add" Name="Add" Click="Add_Click"/>
+            <Button Grid.Column="1" Grid.Row="0" Content="Modify" Name="Modify" Click="Modify_Click"/>
+            <Button Grid.Column="2" Grid.Row="0" Content="Delete" Name="Delete" Click="Delete_Click"/>
+            <StackPanel Name="AddPanel" Orientation="Horizontal" Visibility="Hidden" Grid.Row="1" HorizontalAlignment="Left" Grid.ColumnSpan="3">
+                <TextBox Name="dNameAdd" Width="200" Margin="10"/>
+                <Button Content="Commit" Name="CommitAdd" Click="CommitAdd_Click" Margin="10"/>
+            </StackPanel>
+            <StackPanel Name="ModifyPanel" Orientation="Horizontal" Visibility="Hidden" Grid.Row="2" HorizontalAlignment="Left" Grid.ColumnSpan="3">
+                <TextBlock Name="departmentID" Margin="10"/>
+                <TextBox Name="dNameModify" Margin="10"/>
+                <Button Content="Commit" Name="CommitModify" Click="CommitModify_Click" Margin="10"/>
+            </StackPanel>
+        </Grid>
+        
         <local:EmployeeControl DataContext="{Binding ElementName=MyControl, Mode=OneWay}" IsEnabled="False" SubVisibility="Hidden"/>
     </StackPanel>
 </UserControl>

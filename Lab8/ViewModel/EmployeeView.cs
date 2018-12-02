@@ -23,5 +23,9 @@ namespace Lab8.ViewModel
         public virtual ICollection<EmployeeOrderView> EmployeeOrders { get; set; }
 
         public virtual PositionView Position1 { get; set; }
+
+        public int? position { get; set; }
+
+        public int? department { get; set; }
     }
 }
