@@ -4,11 +4,74 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Lab8"
+        xmlns:controls="clr-namespace:Lab8.Controls"
+        
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <DataGrid ItemsSource="{Binding Table, Mode=OneWay}">
-            
-        </DataGrid>
-    </Grid>
+    <TabControl Name="MyTab">
+        <TabItem IsSelected="True">
+            <TabItem.Header>
+                <StackPanel>
+                    <TextBlock Text="Employees"/>
+                </StackPanel>
+            </TabItem.Header>
+            <TabItem.Content>
+                <Grid>
+                    <controls:EmployeeControl/>
+                </Grid>
+            </TabItem.Content>
+        </TabItem>
+
+        <TabItem>
+            <TabItem.Header>
+                <StackPanel>
+                    <TextBlock Text="Positions"/>
+                </StackPanel>
+            </TabItem.Header>
+            <TabItem.Content>
+                <StackPanel>
+                    <controls:PositionControl/>
+                </StackPanel>
+            </TabItem.Content>
+        </TabItem>
+
+        <TabItem>
+            <TabItem.Header>
+                <StackPanel>
+                    <TextBlock Text="Departments"/>
+                </StackPanel>
+            </TabItem.Header>
+            <TabItem.Content>
+                <StackPanel>
+                    <controls:DepartmentControl/>
+                </StackPanel>
+            </TabItem.Content>
+        </TabItem>
+
+        <TabItem>
+            <TabItem.Header>
+                <StackPanel>
+                    <TextBlock Text="EmployeeOrders"/>
+                </StackPanel>
+            </TabItem.Header>
+            <TabItem.Content>
+                <StackPanel>
+                    <controls:EmployeeOrderControl/>
+                </StackPanel>
+            </TabItem.Content>
+        </TabItem>
+
+        <TabItem>
+            <TabItem.Header>
+                <StackPanel>
+                    <TextBlock Text="OrderTypes"/>
+                </StackPanel>
+            </TabItem.Header>
+            <TabItem.Content>
+                <StackPanel>
+                    <controls:OrderTypeControl/>
+                </StackPanel>
+            </TabItem.Content>
+        </TabItem>
+    </TabControl>
 </Window>
