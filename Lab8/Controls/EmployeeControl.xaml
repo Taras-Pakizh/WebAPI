@@ -114,6 +114,6 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <local:EmployeeOrderControl DataContext="{Binding ElementName=MyControl, Mode=OneWay}" Visibility="{Binding SubVisibility, Mode=OneWay}"/>
+        <local:EmployeeOrderControl DataContext="{Binding ElementName=MyControl, Mode=OneWay}" Visibility="{Binding SubVisibility, Mode=OneWay}" IsEnabled="False"/>
     </StackPanel>
 </UserControl>

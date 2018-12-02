@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using Lab8.ViewModel;
+
 namespace Lab8.Controls
 {
     /// <summary>
@@ -23,11 +25,37 @@ namespace Lab8.Controls
         public OrderTypeControl()
         {
             InitializeComponent();
+            SubVisibility = Visibility.Visible;
+        }
+
+        public static readonly DependencyProperty SubVisibilityProperty;
+        public Visibility SubVisibility
+        {
+            get { return (Visibility)GetValue(SubVisibilityProperty); }
+            set { SetValue(SubVisibilityProperty, value); }
+        }
+
+        public static readonly DependencyProperty EmployeesOrdersProperty;
+        public ICollection<EmployeeOrderView> EmployeeOrders
+        {
+            get { return (ICollection<EmployeeOrderView>)GetValue(EmployeesOrdersProperty); }
+            set { SetValue(EmployeesOrdersProperty, value); }
+        }
+
+        static OrderTypeControl()
+        {
+            EmployeesOrdersProperty = DependencyProperty.Register(nameof(EmployeeOrders),
+                typeof(ICollection<EmployeeOrderView>), typeof(OrderTypeControl));
+            SubVisibilityProperty = DependencyProperty.Register(nameof(SubVisibility),
+                typeof(Visibility), typeof(OrderTypeControl));
         }
 
         private void MyGrid_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
         {
-
+            if (MyGrid.SelectedIndex == -1)
+                return;
+            var _orderType = (OrderTypeView)MyGrid.SelectedItem;
+            EmployeeOrders = _orderType.EmployeeOrders;
         }
     }
 }
