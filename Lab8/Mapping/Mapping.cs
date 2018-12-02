@@ -12,6 +12,27 @@ namespace Lab8.Mapping
 {
     public static class Mapping
     {
+        public static bool isInitialize { get; private set; }
+        public static void Initialize()
+        {
+            if (isInitialize)
+                return;
+            Mapper.Initialize(ctg =>
+            {
+                ctg.CreateMap<Employee, EmployeeView>();
+                ctg.CreateMap<EmployeeView, Employee>();
+                ctg.CreateMap<Position, PositionView>();
+                ctg.CreateMap<PositionView, Position>();
+                ctg.CreateMap<Department, DepartmentView>();
+                ctg.CreateMap<DepartmentView, Department>();
+                ctg.CreateMap<OrderType, OrderTypeView>();
+                ctg.CreateMap<OrderTypeView, OrderType>();
+                ctg.CreateMap<EmployeeOrder, EmployeeOrderView>();
+                ctg.CreateMap<EmployeeOrderView, EmployeeOrder>();
+            });
+            isInitialize = true;
+        }
+
         public static IMapper CreateMapper_Employee_to_View()
         {
             return new MapperConfiguration(ctg =>
@@ -56,20 +77,6 @@ namespace Lab8.Mapping
                 ctg.CreateMap<DepartmentView, Department>();
             }).CreateMapper();
         }
-        //public static IMapper CreateMapper_LinqDepartment_to_View()
-        //{
-        //    return new MapperConfiguration(ctg =>
-        //    {
-        //        ctg.CreateMap<LDepartment, DepartmentView>();
-        //    }).CreateMapper();
-        //}
-        //public static IMapper CreateMapper_View_to_LinqDepartment()
-        //{
-        //    return new MapperConfiguration(ctg =>
-        //    {
-        //        ctg.CreateMap<DepartmentView, LDepartment>();
-        //    }).CreateMapper();
-        //}
 
         public static IMapper CreateMapper_OrderType_to_View()
         {

@@ -61,6 +61,7 @@ namespace Lab8.Controls
             DepartmentView view = new DepartmentView();
             view.dname = dNameAdd.Text;
             var parameter = new ModifyParameter();
+            view.departmentID = ((ApplicationView)DataContext).Departments.Max(x => x.departmentID) + 1;
             parameter.view = view;
             parameter.Add = true;
             ((ApplicationView)DataContext).UseEntity.Execute(parameter);

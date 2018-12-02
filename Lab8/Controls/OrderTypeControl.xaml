@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" Name="MyControl">
     <StackPanel>
-        <DataGrid Name="MyGrid" ItemsSource="{Binding Orders, Mode=TwoWay}" AutoGenerateColumns="False" SelectedCellsChanged="MyGrid_SelectedCellsChanged">
+        <DataGrid Name="MyGrid" ItemsSource="{Binding OrderTypes, Mode=TwoWay}" AutoGenerateColumns="False" SelectedCellsChanged="MyGrid_SelectedCellsChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="#" Binding="{Binding Path=orderTypeID}" Width="30" IsReadOnly="True"/>
 

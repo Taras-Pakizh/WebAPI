@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Lab8.ViewModel
 {
-    public class EmployeeView:ViewBase
+    public class EmployeeView:ViewBase, IIdable
     {
         public int employeeID { get; set; }
 
@@ -27,5 +27,10 @@ namespace Lab8.ViewModel
         public int? position { get; set; }
 
         public int? department { get; set; }
+
+        public int GetId()
+        {
+            return employeeID;
+        }
     }
 }

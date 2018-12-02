@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Lab8.ViewModel
 {
-    public class EmployeeOrderView :ViewBase
+    public class EmployeeOrderView :ViewBase, IIdable
     {
         
         public int orderID { get; set; }
@@ -24,5 +24,10 @@ namespace Lab8.ViewModel
         public virtual EmployeeView Employee1 { get; set; }
 
         public virtual OrderTypeView OrderType1 { get; set; }
+
+        public int GetId()
+        {
+            return orderID;
+        }
     }
 }

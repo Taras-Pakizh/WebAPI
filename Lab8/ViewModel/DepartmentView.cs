@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Lab8.ViewModel
 {
-    public class DepartmentView :ViewBase
+    public class DepartmentView :ViewBase, IIdable
     {
         
         public int departmentID { get; set; }
@@ -16,5 +16,10 @@ namespace Lab8.ViewModel
 
         
         public virtual ICollection<EmployeeView> Employees { get; set; }
+
+        public int GetId()
+        {
+            return departmentID;
+        }
     }
 }

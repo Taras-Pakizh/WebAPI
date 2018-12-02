@@ -78,13 +78,13 @@ namespace Lab8.ViewModel
         }
 
         private ObservableCollection<OrderTypeView> _orders;
-        public ObservableCollection<OrderTypeView> Orders
+        public ObservableCollection<OrderTypeView> OrderTypes
         {
             get { return _orders; }
             set
             {
                 _orders = value;
-                OnPropertyChanged(nameof(Orders));
+                OnPropertyChanged(nameof(OrderTypes));
             }
         }
 
@@ -131,8 +131,36 @@ namespace Lab8.ViewModel
 
         private void _UseEntityTask(object obj)
         {
-            EntityTask task = new EntityTask(_model, this);
-            task.Execute(obj);
+            Mapping.Mapping.Initialize();
+
+            ViewBase view; IModelTask Task = null;
+            var parameter = obj as ModifyParameter;
+            if (parameter != null)
+                view = parameter.view;
+            else view = (ViewBase)obj;
+
+            if(view is DepartmentView)
+            {
+                Task = new EntityTask<Department, DepartmentView>(_model, this);
+            }
+            else if(view is PositionView)
+            {
+                Task = new EntityTask<Position, PositionView>(_model, this);
+            }
+            else if(view is EmployeeOrderView)
+            {
+                Task = new EntityTask<EmployeeOrder, EmployeeOrderView>(_model, this);
+            }
+            else if(view is EmployeeView)
+            {
+                Task = new EntityTask<Employee, EmployeeView>(_model, this);
+            }
+            else if(view is OrderTypeView)
+            {
+                Task = new EntityTask<OrderType, OrderTypeView>(_model, this);
+            }
+
+            Task.Execute(obj);
         }
 
         #endregion
