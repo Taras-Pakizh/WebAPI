@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace WPFClient.RequestController
 {
-    class AddController
+    class UpdateController
     {
-        public static async Task<bool> Add<T>(string name, T view)
+        public static async Task<bool> Update<T>(string name, T view)
         {
             using (var client = new HttpClient())
             {
@@ -18,7 +18,7 @@ namespace WPFClient.RequestController
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                HttpResponseMessage response = await client.PostAsJsonAsync("api/" + name, view);
+                HttpResponseMessage response = await client.PutAsJsonAsync("api/" + name, view);
                 if (response.IsSuccessStatusCode)
                 {
                     var result = await response.Content.ReadAsAsync<bool>();

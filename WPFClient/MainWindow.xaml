@@ -15,13 +15,21 @@
             </TabItem.Header>
             <TabItem.Content>
                 <StackPanel>
-                    <DataGrid ItemsSource="{Binding Path=Employees, Mode=OneWay}">
+                    <DataGrid Name="EmployeeGrid" ItemsSource="{Binding Path=Employees, Mode=OneWay}">
                         
                     </DataGrid>
                     <Button Content="Get" Command="{Binding Get}"/>
-                    <Button Content="Post"/>
-                    <Button Content="Put"/>
-                    <Button Content="Delete"/>
+                    <Button Content="Post" Click="Button_Click_3"/>
+                    <StackPanel>
+                        <TextBox Name="firstnamePost"/>
+                        <TextBox Name="lastnamePost"/>
+                    </StackPanel>
+                    <Button Content="Put" Click="Button_Click_4"/>
+                    <StackPanel>
+                        <TextBox Name="firstnamePut"/>
+                        <TextBox Name="lastnamePut"/>
+                    </StackPanel>
+                    <Button Content="Delete" Click="Button_Click_5"/>
                 </StackPanel>
             </TabItem.Content>
         </TabItem>
@@ -34,13 +42,21 @@
             </TabItem.Header>
             <TabItem.Content>
                 <StackPanel>
-                    <DataGrid ItemsSource="{Binding Path=Positions, Mode=OneWay}">
+                    <DataGrid Name="PositionGrid" ItemsSource="{Binding Path=Positions, Mode=OneWay}">
 
                     </DataGrid>
                     <Button Content="Get" Command="{Binding Get}"/>
-                    <Button Content="Post"/>
-                    <Button Content="Put"/>
-                    <Button Content="Delete"/>
+                    <Button Content="Post" Click="Button_Click_6"/>
+                    <StackPanel>
+                        <TextBox Name="positionNamePost"/>
+                        <TextBox Name="salaryPost" Text="salary"/>
+                    </StackPanel>
+                    <Button Content="Put" Click="Button_Click_7"/>
+                    <StackPanel>
+                        <TextBox Name="positionNamePut"/>
+                        <TextBox Name="salaryPut" Text="salary"/>
+                    </StackPanel>
+                    <Button Content="Delete" Click="Button_Click_8"/>
                 </StackPanel>
             </TabItem.Content>
         </TabItem>
@@ -57,12 +73,15 @@
 
                     </DataGrid>
                     <Button Content="Get" Command="{Binding Get}"/>
-                    <Button Content="Post"/>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBox Name="Control_dname"/>
+                    <Button Content="Post" Click="Button_Click"/>
+                    <StackPanel>
+                        <TextBox Name="dnamePost"/>
                     </StackPanel>
-                    <Button Content="Put"/>
-                    <Button Content="Delete"/>
+                    <Button Content="Put" Click="Button_Click_1"/>
+                    <StackPanel>
+                        <TextBox Name="dnamePut"/>
+                    </StackPanel>
+                    <Button Content="Delete" Click="Button_Click_2"/>
                 </StackPanel>
             </TabItem.Content>
         </TabItem>
@@ -75,13 +94,19 @@
             </TabItem.Header>
             <TabItem.Content>
                 <StackPanel>
-                    <DataGrid ItemsSource="{Binding Path=EmployeeOrders, Mode=OneWay}">
+                    <DataGrid Name="EmployeeOrderGrid" ItemsSource="{Binding Path=EmployeeOrders, Mode=OneWay}">
 
                     </DataGrid>
                     <Button Content="Get" Command="{Binding Get}"/>
-                    <Button Content="Post"/>
-                    <Button Content="Put"/>
-                    <Button Content="Delete"/>
+                    <Button Content="Post" Click="Button_Click_9"/>
+                    <StackPanel>
+                        <TextBox Name="descriptionPost"/>
+                    </StackPanel>
+                    <Button Content="Put" Click="Button_Click_10"/>
+                    <StackPanel>
+                        <TextBox Name="descriptionPut"/>
+                    </StackPanel>
+                    <Button Content="Delete" Click="Button_Click_11"/>
                 </StackPanel>
             </TabItem.Content>
         </TabItem>
@@ -94,13 +119,19 @@
             </TabItem.Header>
             <TabItem.Content>
                 <StackPanel>
-                    <DataGrid ItemsSource="{Binding Path=OrderTypes, Mode=OneWay}">
+                    <DataGrid Name="OrderTypeGrid" ItemsSource="{Binding Path=OrderTypes, Mode=OneWay}">
 
                     </DataGrid>
                     <Button Content="Get" Command="{Binding Get}"/>
-                    <Button Content="Post"/>
-                    <Button Content="Put"/>
-                    <Button Content="Delete"/>
+                    <Button Content="Post" Click="Button_Click_12"/>
+                    <StackPanel>
+                        <TextBox Name="orderNamePost"/>
+                    </StackPanel>
+                    <Button Content="Put" Click="Button_Click_13"/>
+                    <StackPanel>
+                        <TextBox Name="orderNamePut"/>
+                    </StackPanel>
+                    <Button Content="Delete" Click="Button_Click_14"/>
                 </StackPanel>
             </TabItem.Content>
         </TabItem>

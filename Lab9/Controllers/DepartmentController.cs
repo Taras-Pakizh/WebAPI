@@ -37,9 +37,9 @@ namespace Lab9.Controllers
         }
 
         [HttpDelete]
-        public bool Delete(DepartmentView view)
+        public bool Delete(int id)
         {
-            return service.Remove(view);
+            return service.Remove(id);
         }
 
         [HttpPut]

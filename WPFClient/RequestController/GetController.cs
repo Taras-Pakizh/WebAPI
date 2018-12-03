@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using Lab9.Data.ViewModel;
 using System.Windows;
+using System.Collections.ObjectModel;
 
 namespace WPFClient.RequestController
 {
@@ -17,6 +18,23 @@ namespace WPFClient.RequestController
         public GetController(string controllerName)
         {
             _controllerName = controllerName;
+        }
+
+        public async Task<ObservableCollection<T>> Get<T>(string name)
+        {
+            var result = await GetAll<T>(name);
+            var view = new ObservableCollection<T>();
+            
+            foreach (var item in result)
+            {
+                var instance = Activator.CreateInstance<T>();
+                foreach (var property in typeof(T).GetProperties())
+                {
+                    property.SetValue(instance, property.GetValue(item));
+                }
+                view.Add(instance);
+            }
+            return view;
         }
 
         public static async Task<IEnumerable<T>> GetAll<T>(string name)

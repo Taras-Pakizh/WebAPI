@@ -20,9 +20,9 @@ namespace Lab9.Services
             return entity.Update(view);
         }
 
-        public bool Remove(TView view)
+        public bool Remove(int id)
         {
-            return entity.Remove(view);
+            return entity.Remove(id);
         }
 
         public bool Add(TView view)

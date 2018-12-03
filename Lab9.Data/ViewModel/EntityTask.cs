@@ -59,11 +59,11 @@ namespace Lab9.Data.ViewModel
             }
         }
 
-        public bool Remove(TView instance)
+        public bool Remove(int id)
         {
             try
             {
-                var prevInstance = (T)set.Find(instance.GetId());
+                var prevInstance = (T)set.Find(id);
                 set.Remove(prevInstance);
                 Save();
 
