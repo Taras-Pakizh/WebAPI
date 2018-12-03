@@ -9,41 +9,41 @@ using Lab9.Data.ViewModel;
 
 namespace Lab9.Controllers
 {
-    public class DepartmentController : ApiController
+    public class EmployeeOrderController : ApiController
     {
-        private DepartmentService service;
+        private EmployeeOrderService service;
 
-        public DepartmentController()
+        public EmployeeOrderController()
         {
-            service = new DepartmentService();
+            service = new EmployeeOrderService();
         }
 
         [HttpGet]
-        public IEnumerable<DepartmentView> Get()
+        public IEnumerable<EmployeeOrderView> Get()
         {
             return service.GetAll();
         }
 
         [HttpGet]
-        public DepartmentView Get(int id)
+        public EmployeeOrderView Get(int id)
         {
             return service.GetById(id);
         }
 
         [HttpPost]
-        public bool Post(DepartmentView view)
+        public bool Post(EmployeeOrderView view)
         {
             return service.Add(view);
         }
 
         [HttpDelete]
-        public bool Delete(DepartmentView view)
+        public bool Delete(EmployeeOrderView view)
         {
             return service.Remove(view);
         }
 
         [HttpPut]
-        public bool Update(DepartmentView view)
+        public bool Update(EmployeeOrderView view)
         {
             return service.Update(view);
         }

@@ -9,41 +9,41 @@ using Lab9.Data.ViewModel;
 
 namespace Lab9.Controllers
 {
-    public class DepartmentController : ApiController
+    public class PositionController : ApiController
     {
-        private DepartmentService service;
+        private PositionService service;
 
-        public DepartmentController()
+        public PositionController()
         {
-            service = new DepartmentService();
+            service = new PositionService();
         }
 
         [HttpGet]
-        public IEnumerable<DepartmentView> Get()
+        public IEnumerable<PositionView> Get()
         {
             return service.GetAll();
         }
 
         [HttpGet]
-        public DepartmentView Get(int id)
+        public PositionView Get(int id)
         {
             return service.GetById(id);
         }
 
         [HttpPost]
-        public bool Post(DepartmentView view)
+        public bool Post(PositionView view)
         {
             return service.Add(view);
         }
 
         [HttpDelete]
-        public bool Delete(DepartmentView view)
+        public bool Delete(PositionView view)
         {
             return service.Remove(view);
         }
 
         [HttpPut]
-        public bool Update(DepartmentView view)
+        public bool Update(PositionView view)
         {
             return service.Update(view);
         }

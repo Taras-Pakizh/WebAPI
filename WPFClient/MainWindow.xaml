@@ -1,0 +1,108 @@
+﻿<Window x:Class="WPFClient.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPFClient"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <TabControl Name="MyTab" SelectedIndex="{Binding Path=SelectedTable, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}">
+        <TabItem IsSelected="True">
+            <TabItem.Header>
+                <StackPanel>
+                    <TextBlock Text="Employees"/>
+                </StackPanel>
+            </TabItem.Header>
+            <TabItem.Content>
+                <StackPanel>
+                    <DataGrid ItemsSource="{Binding Path=Employees, Mode=OneWay}">
+                        
+                    </DataGrid>
+                    <Button Content="Get" Command="{Binding Get}"/>
+                    <Button Content="Post"/>
+                    <Button Content="Put"/>
+                    <Button Content="Delete"/>
+                </StackPanel>
+            </TabItem.Content>
+        </TabItem>
+
+        <TabItem>
+            <TabItem.Header>
+                <StackPanel>
+                    <TextBlock Text="Positions"/>
+                </StackPanel>
+            </TabItem.Header>
+            <TabItem.Content>
+                <StackPanel>
+                    <DataGrid ItemsSource="{Binding Path=Positions, Mode=OneWay}">
+
+                    </DataGrid>
+                    <Button Content="Get" Command="{Binding Get}"/>
+                    <Button Content="Post"/>
+                    <Button Content="Put"/>
+                    <Button Content="Delete"/>
+                </StackPanel>
+            </TabItem.Content>
+        </TabItem>
+
+        <TabItem>
+            <TabItem.Header>
+                <StackPanel>
+                    <TextBlock Text="Departments"/>
+                </StackPanel>
+            </TabItem.Header>
+            <TabItem.Content>
+                <StackPanel>
+                    <DataGrid Name="DepartmentGrid" ItemsSource="{Binding Path=Departments, Mode=OneWay}">
+
+                    </DataGrid>
+                    <Button Content="Get" Command="{Binding Get}"/>
+                    <Button Content="Post"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBox Name="Control_dname"/>
+                    </StackPanel>
+                    <Button Content="Put"/>
+                    <Button Content="Delete"/>
+                </StackPanel>
+            </TabItem.Content>
+        </TabItem>
+
+        <TabItem>
+            <TabItem.Header>
+                <StackPanel>
+                    <TextBlock Text="EmployeeOrders"/>
+                </StackPanel>
+            </TabItem.Header>
+            <TabItem.Content>
+                <StackPanel>
+                    <DataGrid ItemsSource="{Binding Path=EmployeeOrders, Mode=OneWay}">
+
+                    </DataGrid>
+                    <Button Content="Get" Command="{Binding Get}"/>
+                    <Button Content="Post"/>
+                    <Button Content="Put"/>
+                    <Button Content="Delete"/>
+                </StackPanel>
+            </TabItem.Content>
+        </TabItem>
+
+        <TabItem>
+            <TabItem.Header>
+                <StackPanel>
+                    <TextBlock Text="OrderTypes"/>
+                </StackPanel>
+            </TabItem.Header>
+            <TabItem.Content>
+                <StackPanel>
+                    <DataGrid ItemsSource="{Binding Path=OrderTypes, Mode=OneWay}">
+
+                    </DataGrid>
+                    <Button Content="Get" Command="{Binding Get}"/>
+                    <Button Content="Post"/>
+                    <Button Content="Put"/>
+                    <Button Content="Delete"/>
+                </StackPanel>
+            </TabItem.Content>
+        </TabItem>
+    </TabControl>
+</Window>
