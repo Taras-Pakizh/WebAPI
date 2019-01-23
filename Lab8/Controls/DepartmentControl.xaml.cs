@@ -47,6 +47,7 @@ namespace Lab8.Controls
             if (_department == null)
                 return;
             Employees = _department.Employees;
+            ((ApplicationView)DataContext).Group.Execute(MyGrig.SelectedIndex);
         }
 
         private void Add_Click(object sender, RoutedEventArgs e)
@@ -64,7 +65,20 @@ namespace Lab8.Controls
             view.departmentID = ((ApplicationView)DataContext).Departments.Max(x => x.departmentID) + 1;
             parameter.view = view;
             parameter.Add = true;
-            ((ApplicationView)DataContext).UseEntity.Execute(parameter);
+            int index = ((ApplicationView)DataContext).Technology;
+            switch (index)
+            {
+                case 0:
+                    ((ApplicationView)DataContext).UseEntity.Execute(parameter);
+                    break;
+                case 1:
+                    ((ApplicationView)DataContext).UseAdo.Execute(parameter);
+                    break;
+                case 2:
+                    ((ApplicationView)DataContext).UseLinq.Execute(parameter);
+                    break;
+            }
+            //((ApplicationView)DataContext).UseEntity.Execute(parameter);
             AddPanel.Visibility = Visibility.Hidden;
         }
 
@@ -76,7 +90,20 @@ namespace Lab8.Controls
             var parameter = new ModifyParameter();
             parameter.view = view;
             parameter.Update = true;
-            ((ApplicationView)DataContext).UseEntity.Execute(parameter);
+            //((ApplicationView)DataContext).UseEntity.Execute(parameter);
+            int index = ((ApplicationView)DataContext).Technology;
+            switch (index)
+            {
+                case 0:
+                    ((ApplicationView)DataContext).UseEntity.Execute(parameter);
+                    break;
+                case 1:
+                    ((ApplicationView)DataContext).UseAdo.Execute(parameter);
+                    break;
+                case 2:
+                    ((ApplicationView)DataContext).UseLinq.Execute(parameter);
+                    break;
+            }
             ModifyPanel.Visibility = Visibility.Hidden;
         }
 
@@ -97,7 +124,20 @@ namespace Lab8.Controls
             var _department = MyGrig.SelectedItem as DepartmentView;
             if (_department == null)
                 return;
-            ((ApplicationView)DataContext).UseEntity.Execute(_department);
+            //((ApplicationView)DataContext).UseEntity.Execute(_department);
+            int index = ((ApplicationView)DataContext).Technology;
+            switch (index)
+            {
+                case 0:
+                    ((ApplicationView)DataContext).UseEntity.Execute(_department);
+                    break;
+                case 1:
+                    ((ApplicationView)DataContext).UseAdo.Execute(_department);
+                    break;
+                case 2:
+                    ((ApplicationView)DataContext).UseLinq.Execute(_department);
+                    break;
+            }
         }
     }
 }

@@ -55,7 +55,7 @@
                 <Button Content="Commit" Name="CommitModify" Click="CommitModify_Click" Margin="10"/>
             </StackPanel>
         </Grid>
-        
+        <TextBlock Name="MyCount" Text="{Binding Path=Count, Mode=OneWay}"/>
         <local:EmployeeControl DataContext="{Binding ElementName=MyControl, Mode=OneWay}" IsEnabled="False" SubVisibility="Hidden"/>
     </StackPanel>
 </UserControl>

@@ -43,6 +43,11 @@
             </TabItem.Header>
             <TabItem.Content>
                 <StackPanel>
+                    <ComboBox SelectedIndex="{Binding Path=Technology, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}">
+                        <ComboBoxItem Content="Entity Framework"/>
+                        <ComboBoxItem Content="ADO.NET"/>
+                        <ComboBoxItem Content="LinqToSql"/>
+                    </ComboBox>
                     <controls:DepartmentControl/>
                 </StackPanel>
             </TabItem.Content>

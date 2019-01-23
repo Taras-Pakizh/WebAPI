@@ -89,9 +89,18 @@ namespace Lab8.ViewModel
             using (SqlConnection con = new SqlConnection(_connection))
             {
                 StringBuilder sql = new StringBuilder();
-                sql.Append("insert into " + typeof(T).Name + " values (");
-
-                sql.Append(")");
+                sql.Append("update " + typeof(T).Name + "s set ");
+                var properties = GetProperties();
+                foreach (var property in properties)
+                {
+                    if (property == "departmentID")
+                        continue;
+                    var Column = typeof(T).GetProperty(property);
+                    sql.Append(property + " = '" + Column.GetValue(Entity) + "', ");
+                }
+                sql.Remove(sql.Length - 2, 2);
+                int id = (int)(typeof(T).GetProperty(properties.First()).GetValue(Entity));
+                sql.Append(" where " + properties.First() + " = " + id);
 
                 SqlCommand command = new SqlCommand(sql.ToString(), con);
 
@@ -106,9 +115,10 @@ namespace Lab8.ViewModel
             using (SqlConnection con = new SqlConnection(_connection))
             {
                 StringBuilder sql = new StringBuilder();
-                sql.Append("insert into " + typeof(T).Name + " values (");
-
-                sql.Append(")");
+                sql.Append("delete from " + typeof(T).Name + "s ");
+                var properties = GetProperties();
+                int id = (int)(typeof(T).GetProperty(properties.First()).GetValue(Entity));
+                sql.Append(" where " + properties.First() + " = " + id + "");
 
                 SqlCommand command = new SqlCommand(sql.ToString(), con);
 
